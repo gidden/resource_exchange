@@ -3,7 +3,9 @@ Resource Exchange (Proof-of-Principle)
 
 The goal of this repository will be to provide a proof-of-principle
 set of examples showing how the proposed Cyclus resource exchange will
-function in the following cases.
+function in the following cases. Each of the following cases are
+explored for a single time step, i.e., the quality of the received
+order is not taken into account.
 
 Case 1: 1 Supplier, 1 Consumer
 ------------------------------
@@ -18,7 +20,22 @@ consumer. We explore the following situations in this suite:
 * an inter-regional policy excludes matching
 * an intra-regional policy excludes matching
 
-Case 2: 2 Suppliers, 1 Consumer
+Case 2: 1 Supplier, 2 Consumers
+-------------------------------
+
+The next simplest case as seen in practice is when there is more than
+one consumer for a given supplier. In this case suite we explore
+issues regarding supplier capacity constraints as well as
+institutional and regional preferences and restrictions. The
+situations tested are as followed:
+
+* resource specifications can be matched exactly
+* resource specifications combine to be greater than the supplier's
+  capacity
+* the suppliers capacity is exceeded, but institutional preferences
+  drive the consumer selection
+
+Case 3: 2 Suppliers, 1 Consumer
 -------------------------------
 
 This case suite is designed to test situations in which there is more
@@ -27,6 +44,6 @@ given commodity type. The following situations are explored:
 
 * no preference differential exists
 * a preference differential exists due to quality differences
-
-Case 3: 1 Supplier, 2 Consumers
--------------------------------
+* there are institution preferences
+* there are regional preferences, i.e., one supplier is affected by a
+  "tax"
