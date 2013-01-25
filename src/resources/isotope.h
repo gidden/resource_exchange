@@ -12,6 +12,8 @@ namespace resource
     int A();
     
     int Z();
+
+    bool meta();
     
     int zaid();
 

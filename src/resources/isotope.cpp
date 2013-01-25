@@ -1,7 +1,6 @@
 
 #include "isotope.h"
 
-using namespace std;
 using namespace resource;
 
 isotope::isotope(int A, int Z, bool meta) :
@@ -17,6 +16,11 @@ int isotope::A()
 int isotope::Z()
 {
   return z_;
+}
+
+bool isotope::meta()
+{
+  return meta_;
 }
 
 int isotope::zaid()
