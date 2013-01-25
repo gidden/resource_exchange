@@ -4,11 +4,22 @@
 using namespace std;
 using namespace resource;
 
-isotope::isotope()
+isotope::isotope(int A, int Z, bool meta) :
+  a_(A), z_(Z), meta_(meta)
 {
 }
 
-std::string isotope::str()
+int isotope::A()
 {
-  return string("hi!");
+  return a_;
+}
+
+int isotope::Z()
+{
+  return z_;
+}
+
+int isotope::zaid()
+{
+  return 10000*a_ + 10*z_ + (meta_ ? 1 : 0);
 }

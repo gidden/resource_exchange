@@ -8,8 +8,8 @@ using namespace resource;
 
 int main()
 {
-  isotope i;
-  cout << i.str() << endl;
+  isotope i(92,235);
+  cout << i.A() << " " << i.Z() << " " << i.zaid() << endl;
 
   return 0;
 }

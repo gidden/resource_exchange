@@ -7,9 +7,17 @@ namespace resource
   class isotope
   {
   public:
-    isotope();
+    isotope(int A=1, int Z=1, bool meta=false);
+
+    int A();
     
-    std::string str();
+    int Z();
+    
+    int zaid();
+
+  private:
+    int a_, z_;
+    bool meta_;
   };
   
 }
