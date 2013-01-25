@@ -47,3 +47,11 @@ given commodity type. The following situations are explored:
 * there are institution preferences
 * there are regional preferences, i.e., one supplier is affected by a
   "tax"
+
+Case 4: 1 Resource, 2 Commodities
+---------------------------------
+
+This is a singular case in which a supplier has one resource that can
+be traded in two different "markets". It is designed to mirror the
+issue of sending used fuel to either a repository or to a recycling
+facility.
