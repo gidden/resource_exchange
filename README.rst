@@ -48,7 +48,7 @@ testing
 
 .. math::
 
-   \sum{h \in H} c(h)}
+  \sum\limits_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
 
 
 
