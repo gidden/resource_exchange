@@ -47,6 +47,7 @@ program (MILP).
 testing
 
 .. math::
+
    \sum{h \in H} c(h)}
 
 
