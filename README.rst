@@ -44,6 +44,10 @@ come from a single supplier. This models the reality of the fuel cycle, but
 transforms the problem from a linear program (LP) to a mixed integer/linear
 program (MILP).
 
+testing
+
+.. math::
+   \sum{h \in H} c(h)}
 
 
 
