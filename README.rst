@@ -23,10 +23,13 @@ can be posted to each consumer requesting a resource in their production
 category. In the current formulation, capacity restrictions must be linear
 functions of the demand, but may depend on specific qualities of the demand
 (e.g. uranium enrichment and SWUs), because these are static at solution time
-and can thus be evaluated and modeled as a constant. This posting is termed a
-"response for requests for bids" and effectively defines the possible arcs
-between consumers and producers. It should be noted that arcs can transend
-commodities, i.e., this is a multi-commodity problem.
+and can thus be evaluated and modeled as a constant. Furthermore, a producer can
+provide more than one such capacity restriction. For example, an enriched
+uranium provider could have capacities related to both SWU and natural uranium
+reserves. This posting is termed a "response for requests for bids" and
+effectively defines the possible arcs between consumers and producers. It should
+be noted that consumers can request different commodities to meet the same
+demand, i.e., this is a multi-commodity problem.
 
 The third step is for consumers and their managers to assign a preference score
 to each bid. In our system, managers are institutions and regions, where each is
@@ -42,54 +45,45 @@ that it will accept only an order of wood or only an order of coal. Furthermore,
 it can denote that it will only accept whole orders, i.e. all of its order must
 come from a single supplier. This models the reality of the fuel cycle, but
 transforms the problem from a linear program (LP) to a mixed integer/linear
-program (MILP).
+program (MILP). Finally, a cost translation mapping is applied to the set of
+preferences in order to assume the form of a minimum cost problem.
 
+Complexities
+------------
 
-Case 1: 1 Supplier, 1 Consumer
-------------------------------
+A number of complexities are involved in this problem. We break down use cases
+into those of increasing complexity:
 
-This case suite is the most trivially simple for a resource
-exchange. For a given commodity type, there is is one supplier and one
-consumer. We explore the following situations in this suite:
+Supply Doesn't Meeting Demand
+-----------------------------
 
-* a resource specification can be matched exactly
-* a resource specification can be matched within acceptable bounds
-* a resource specification can not be matched within acceptable bounds
-* an inter-regional policy excludes matching
-* an intra-regional policy excludes matching
+For any problem of this type to be feasible, overall supply must be greater than
+demand. However, this is not always the case for automated simulation. The
+general solution technique for this problem is to create artificial source nodes
+that have arbitrarily high costs and capacities. Accordingly, any amount of
+supply met by these nodes is noted and removed from the solution before
+returning the solution.
 
-Case 2: 1 Supplier, 2 Consumers
--------------------------------
+Multiple Supply Constraints for a Commodity
+-------------------------------------------
 
-The next simplest case as seen in practice is when there is more than
-one consumer for a given supplier. In this case suite we explore
-issues regarding supplier capacity constraints as well as
-institutional and regional preferences and restrictions. The
-situations tested are as followed:
+A supplier can have more than one constraint on its capacity of a commodity,
+given the quantity and quality of each demand. A likely way forward is to say:
+for each resource request in the exchange, return a set of capacity values
+associated with the registered constraints.
 
-* resource specifications can be matched exactly
-* resource specifications combine to be greater than the supplier's
-  capacity
-* the suppliers capacity is exceeded, but institutional preferences
-  drive the consumer selection
+Demand Can be Met by Multiple Commodities
+-----------------------------------------
 
-Case 3: 2 Suppliers, 1 Consumer
--------------------------------
+We wish to model demand that can be met by multiple commodities, i.e. a demander
+provides a quantity and set of commodities that meet its demand. The commodities
+which are chosen are a function of capacity and cost.
 
-This case suite is designed to test situations in which there is more
-than one supplier from which a consumer can receive resources of a
-given commodity type. The following situations are explored:
+Demand Must be Met by a Single Provider
+---------------------------------------
 
-* no preference differential exists
-* a preference differential exists due to quality differences
-* there are institution preferences
-* there are regional preferences, i.e., one supplier is affected by a
-  "tax"
-
-Case 4: 1 Resource, 2 Commodities
----------------------------------
-
-This is a singular case in which a supplier has one resource that can
-be traded in two different "markets". It is designed to mirror the
-issue of sending used fuel to either a repository or to a recycling
-facility.
+A further complication, adding integer decision variables, is that in addition
+to the previous case, a subset of those demanders must have their demand met by
+a single provider. This addition allows us to model reactors that can use
+multiple types of fuel but not mutually. For example, a reactor could use UOx or
+MOx, but not a mixture.
