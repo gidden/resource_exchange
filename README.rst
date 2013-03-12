@@ -44,13 +44,6 @@ come from a single supplier. This models the reality of the fuel cycle, but
 transforms the problem from a linear program (LP) to a mixed integer/linear
 program (MILP).
 
-testing
-
-.. math::
-
-  \sum\limits_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
-
-
 
 Case 1: 1 Supplier, 1 Consumer
 ------------------------------
